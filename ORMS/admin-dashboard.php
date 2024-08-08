@@ -268,7 +268,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
   <!-- Modals for Add/Edit Category/Product -->
   <div id="categoryModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden">
-    <div class="bg-white p-6 rounded-lg w-11/12 md:w-1/2 lg:w-1/3">
+    <div class="bg-white p-6 rounded-lg w-11/12 md:w-1/2 lg:w-1/3 max-h-full overflow-y-auto">
       <h3 class="text-xl font-bold mb-4" id="categoryModalTitle">Add Category</h3>
       <form id="categoryForm" method="post" enctype="multipart/form-data">
         <input type="hidden" name="action" id="categoryAction" value="addCategory">
@@ -298,7 +298,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   </div>
 
   <div id="productModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden">
-    <div class="bg-white p-6 rounded-lg w-11/12 md:w-1/2 lg:w-1/3">
+    <div class="bg-white p-6 rounded-lg w-11/12 md:w-1/2 lg:w-1/3 max-h-full overflow-y-auto">
       <h3 class="text-xl font-bold mb-4" id="productModalTitle">Add Product</h3>
       <form id="productForm" method="post" enctype="multipart/form-data">
         <input type="hidden" name="action" id="productAction" value="addProduct">
