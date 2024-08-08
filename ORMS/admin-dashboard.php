@@ -167,16 +167,32 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $result = $conn->query("SELECT * FROM category");
                 while ($row = $result->fetch_assoc()) {
                     echo '<div class="border rounded-lg overflow-hidden">
-                            <div class="relative">
-                                <img src="'.$row['category_img'].'" alt="Category Image" class="w-full h-48 object-cover">
-                                <button class="absolute top-2 right-2 bg-yellow-500 text-white px-4 py-2 rounded-lg hover:bg-yellow-600 transition duration-300" onclick="editCategory(\''.$row['category_id'].'\', \''.$row['category_name'].'\', \''.$row['category_img'].'\', '.$row['status'].')">Edit</button>
-                                <button class="absolute top-2 left-2 bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition duration-300" onclick="deleteCategory(\''.$row['category_id'].'\')">Delete</button>
-                            </div>
-                            <div class="p-4">
-                                <h3 class="text-xl font-bold mb-2">'.$row['category_name'].'</h3>
-                                <p>Status: '.($row['status'] ? 'Active' : 'Inactive').'</p>
-                            </div>
-                        </div>';
+                          <div class="relative">
+                              <img src="'.htmlspecialchars($row['product_img']).'" alt="Product Image" class="w-full h-48 object-cover">
+                              <button class="absolute top-2 right-2 bg-yellow-500 text-white px-4 py-2 rounded-lg hover:bg-yellow-600 transition duration-300" 
+                                  onclick="editProduct(
+                                      \''.htmlspecialchars($row['product_id']).'\', 
+                                      \''.htmlspecialchars(addslashes($row['product_name'])).'\', 
+                                      \''.htmlspecialchars($row['product_img']).'\', 
+                                      \''.htmlspecialchars(addslashes($row['product_description'])).'\', 
+                                      \''.htmlspecialchars($row['product_category_id']).'\', 
+                                      '.$row['product_price'].', 
+                                      \''.htmlspecialchars($row['isveg']).'\', 
+                                      '.$row['product_status'].'
+                                  )">
+                                  Edit
+                              </button>
+                              <button class="absolute top-2 left-2 bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition duration-300" 
+                                  onclick="deleteProduct(\''.htmlspecialchars($row['product_id']).'\')">
+                                  Delete
+                              </button>
+                          </div>
+                          <div class="p-4">
+                              <h3 class="text-xl font-bold mb-2">'.htmlspecialchars($row['product_name']).'</h3>
+                              <p>Price: ₹'.htmlspecialchars($row['product_price']).'</p>
+                              <p>Status: '.($row['product_status'] ? 'Available' : 'Out of Stock').'</p>
+                          </div>
+                      </div>';    
                 }
                 ?>
         </div>
